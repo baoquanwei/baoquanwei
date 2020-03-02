@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hsexample.hsexample.mapper.Usermapper">
+
+    <resultMap id="BaseResultMap" type="com.hsexample.hsexample.entity.User">
+        <result column="userId" jdbcType="INTEGER" property="userId" />
+        <result column="userName" jdbcType="VARCHAR" property="userName" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="loginName" jdbcType="VARCHAR" property="loginName" />
+    </resultMap>
+
+    <select id="Sel" resultType="com.hsexample.hsexample.entity.User" parameterType="Integer">
+        select * from user where userId = #{id}
+    </select>
+    <select id="seacheuser" parameterType="String" resultType="Integer">
+        select count(*) from user where loginName= #{loginName}
+    </select>
+    <select id="checkuser" parameterType="String" resultType="Integer">
+        select count(*) from user where loginName= #{loginName} and password= #{password}
+    </select>
+    <select id="queryuserbyloginName" parameterType="String" resultType="java.util.HashMap" >
+        select *  from user u where u.loginName= #{loginName}
+    </select>
+    <select id="queryall"  resultType="java.util.HashMap" >
+        select *  from user u
+    </select>
+
+</mapper>
